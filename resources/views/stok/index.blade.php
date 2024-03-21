@@ -5,7 +5,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h1 class="card-title" style="margin: 10px;">Stok</h1>
+            <h1 class="card-title" style="margin: 10px;">Stock</h1>
             <br>
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
