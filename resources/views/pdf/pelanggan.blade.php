@@ -18,7 +18,7 @@
                 <th>Email</th>
                 <th>Alamat</th>
                 <th>No Telp</th>
-                <th>Action</th>
+                {{-- <th>Action</th> --}}
             </tr>
         </thead>
         <tbody>

@@ -9,6 +9,8 @@ use Exception;
 use Illuminate\Database\QueryException;
 use PDOException;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class MejaController extends Controller
 {
@@ -20,7 +22,12 @@ class MejaController extends Controller
         $data['meja'] = meja::get();
         return view('meja.index')->with($data);
     }
-
+    public function exportPDF()
+    {
+        $meja = Meja::all();
+        $pdf = PDF::loadView('pdf.meja', compact('meja'));
+        return $pdf->download('meja.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      */

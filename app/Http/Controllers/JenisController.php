@@ -10,10 +10,8 @@ use Illuminate\Database\QueryException;
 use PDOException;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Exports\ExcelExport;
+use App\Exports\PaketExport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\Excelimport;
-use Illuminate\Http\Request;
 
 class JenisController extends Controller
 {
@@ -30,12 +28,11 @@ class JenisController extends Controller
         $jenis = Jenis::all();
         $pdf = PDF::loadView('pdf.jenis', compact('jenis'));
         return $pdf->download('jenis.pdf');
-
-        // redirect('jenis');
     }
-    public function exportExcel()
+    public function exportData()
     {
-        return Excel::download(new ExcelExport, 'jenis_export.xlsx');
+        $date = date('Y-m-d');
+        return Excel::download(new PaketExport, $date . '_paket.xlsx');
     }
     /**
      * Show the form for creating a new resource.

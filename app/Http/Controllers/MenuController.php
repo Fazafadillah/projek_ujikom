@@ -13,6 +13,8 @@ use Faker\Provider\Image;
 use Illuminate\Database\QueryException;
 use PDOException;
 use Illuminate\Support\Facades\DB;
+use App\Exports\MenuExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class MenuController extends Controller
@@ -33,6 +35,11 @@ class MenuController extends Controller
         $menu = menu::all();
         $pdf = PDF::loadView('pdf.menu', compact('menu'));
         return $pdf->download('menu.pdf');
+    }
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new MenuExport, $date . '_paket.xlsx');
     }
     /**
      * Show the form for creating a new resource.

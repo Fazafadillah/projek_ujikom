@@ -19,7 +19,8 @@
             </button>
 
             <a href="{{ route('menu.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
-
+            <a href="{{ route('export-paket-menu') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
+                    Excel</a>
             <div class="card-tools">
 
             </div>

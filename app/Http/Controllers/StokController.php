@@ -11,6 +11,8 @@ use Illuminate\Database\QueryException;
 use PDOException;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\StokExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StokController extends Controller
 {
@@ -31,7 +33,11 @@ class StokController extends Controller
 
         // redirect('jenis');
     }
-
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new StokExport, $date . '_paket.xlsx');
+    }
     /**
      * Show the form for creating a new resource.
      */

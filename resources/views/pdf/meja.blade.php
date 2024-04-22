@@ -14,17 +14,17 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Menu</th>
-                <th>Jumlah</th>
-                <th>Action</th>
+                <th>Nomor Meja</th>
+                <th>Status</th>
+                {{-- <th>Action</th> --}}
             </tr>
         </thead>
         <tbody>
-            @foreach ($stok as $index => $item)
+            @foreach ($meja as $index => $item)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $item->menu->name }}</td>
-                    <td>{{ $item->jumlah }}</td>
+                    <td>{{ $item->nomor_meja }}</td>
+                    <td>{{ $item->status }}</td>
                 </tr>
             @endforeach
         </tbody>

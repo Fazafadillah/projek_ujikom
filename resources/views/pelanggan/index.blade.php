@@ -20,6 +20,8 @@
                 <i class="fas fa-plus"></i>
             </button>
             <a href="{{ route('pelanggan.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
+            <a href="{{ route('export-paket-pelanggan') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
+                    Excel</a>
 
             <div class="card-tools">
 
