@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>PDF Export</title>
+    <title>PDF Export Jenis</title>
     <style>
         /* Gaya CSS Anda di sini */
     </style>
