@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
+            $table->string('namaKaryawan');
+            $table->date('tanggalMasuk');
+            $table->time('waktuMasuk');
+            $table->enum('status', ['Hadir', 'Izin', 'Cuti', 'Alpa']);
+            $table->time('waktuKeluar')->nullable();
             $table->timestamps();
         });
     }
