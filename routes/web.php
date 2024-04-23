@@ -12,7 +12,7 @@ use App\Http\Controllers\ProdukTitipanController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\MejaController;
-use App\Models\Categories;
+use App\Http\Controllers\AbsensiController;
 
 // Route::get('/export-pdf', [PdfController::class, 'exportPDF']);
 Route::get('/', [HomeController::class, 'index']);
@@ -37,3 +37,5 @@ Route::resource('meja', MejaController::class);
 Route::get('/Meja/export-pdf', [MejaController::class, 'exportPDF'])->name('meja.export_pdf');
 Route::resource('categories', CategoriesController::class);
 Route::get('/Categories/export-pdf', [CategoriesController::class, 'exportPDF'])->name('categories.export_pdf');
+
+Route::resource('absensi', AbsensiController::class);

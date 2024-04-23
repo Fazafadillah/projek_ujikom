@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Absensi extends Model
 {
     use HasFactory;
+    protected $table ="absensi";
+    protected $guarded = ["id"];
+    protected $fillable = ["namaKaryawan","tanggalMasuk","waktuMasuk","status","waktuKeluar"];
 }
