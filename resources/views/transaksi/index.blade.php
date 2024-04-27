@@ -87,6 +87,7 @@
 
         .ordered-list li {
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
             align-items: center;
             width: 100%;
@@ -102,7 +103,7 @@
         }
 
         .ordered-list li input {
-            width: 50px;
+            width: 70px;
             text-align: center;
         }
 
@@ -163,14 +164,10 @@
             margin: 10px;
         }
 
-        .card-body h6 {
+        .menu-title h6 {
+
+            margin: 0px;
             cursor: pointer;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            padding-top: 130px;
         }
     </style>
 @endpush
@@ -190,10 +187,13 @@
                                         <img src="{{ asset('storage/menu-image/' . $menu->image) }}"
                                             class="card-img-top rounded-circle" style="width: 100px; height: 100px;">
                                     </div>
-                                    <div class="card-body">
-                                        <li class="margin: 5px;" data-harga="{{ $menu->harga }}"
+                                    <div class="menu-title">
+                                        <li class="margin: 5px;" data-name="{{ $menu->name }}"
+                                            data-stok="{{ $menu->stok }}" data-harga="{{ $menu->harga }}"
                                             data-id="{{ $menu->id }}">
                                             <h6>{{ $menu->name }}</h6>
+                                            <h6>{{ $menu->stok }}</h6>
+                                            <h6>{{ $menu->harga }}</h6>
                                         </li>
                                     </div>
                                 </div>
@@ -240,14 +240,17 @@
                 // Ubah di array
                 const id = $(el).closest('li')[0].dataset.id;
                 const index = orderedList.findIndex(list => list.menu_id == id);
-                orderedList[index].qty += orderedList[index].qty == 1 && inc == -1 ? 0 : inc;
+                if (orderedList[index].qty < orderedList[index].stok) {
+                    orderedList[index].qty += orderedList[index].qty == 1 && inc == -1 ? 0 : inc;
+                    const txt_subtotal = $(el).closest('li').find('.subtotal')[0];
+                    const txt_qty = $(el).closest('li').find('.qty-item')[0];
+                    txt_qty.value = parseInt(txt_qty.value) == 1 && inc == -1 ? 1 : parseInt(txt_qty.value) +
+                        inc;
+                    txt_subtotal.innerHTML = orderedList[index].harga * orderedList[index].qty;
+                }
 
                 // Ubah qty dan ubah subtotal
 
-                const txt_subtotal = $(el).closest('li').find('.subtotal')[0];
-                const txt_qty = $(el).closest('li').find('.qty-item')[0];
-                txt_qty.value = parseInt(txt_qty.value) == 1 && inc == -1 ? 1 : parseInt(txt_qty.value) + inc;
-                txt_subtotal.innerHTML = orderedList[index].harga * orderedList[index].qty;
 
                 // Ubah jumlah total
                 $('#total').html(sum());
@@ -287,7 +290,9 @@
                                 showDenyButton: true,
                                 confirmButtonText: "Cetak Nota",
                                 denyButtonText: `OK`,
-                                showCloseButton: true
+                                showCloseButton: false,
+                                allowOutsideClick: false,
+                                allowEscapeKey: false
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.open("{{ url('nota') }}/" + data.notrans);
@@ -309,32 +314,36 @@
 
             $(".menu-item .card li").click(function() {
                 // Mengambil data
+
                 const menu_clicked = $(this).text();
                 const data = $(this)[0].dataset;
+                const name = data.name;
+                const stok = data.stok;
                 const harga = parseFloat(data.harga);
                 const id = parseInt(data.id);
-
+                if (stok < 1) {
+                    return
+                }
                 if (orderedList.every(list => list.menu_id !== id)) {
                     let dataN = {
                         'menu_id': id,
                         'menu': menu_clicked,
+                        'stok': stok,
                         'harga': harga,
                         'qty': 1
                     };
                     orderedList.push(dataN);
                     let listOrder =
-                        `<li  data-id="${id}"><div><h6>${menu_clicked}</h6></div>`;
-                    listOrder += `Sub Total : Rp. ${harga}`;
+                        `<li  data-id="${id}"><div><h6>${name}</h6><h6>${harga}</h6></div>`;
+                    listOrder += `<div></p>`;
                     listOrder += `<button class='remove-item'>hapus</button>
                            <button class="btn-dec"> - </button>`;
                     listOrder += `<input class="qty-item"
                                   type="number"
                                   value="1"
-                                  style="width:35px"
-                                  readonly
-                              />
-                              <button class="btn-inc">+</button><h2>
-                              <span class="subtotal">${harga * 1}</span>
+                                  readonly/>
+                                <button class="btn-inc">+</button></div>
+                                <h2><span class="subtotal">${harga * 1}</span>
                           </li>`;
                     $('.ordered-list').append(listOrder);
                 }

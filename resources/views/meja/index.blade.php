@@ -15,24 +15,19 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formMejaModal"
-                style="margin: 10px;">
-                <i class="fas fa-plus"></i>
-            </button>
-            <a href="{{ route('meja.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
-            <a href="{{ route('export-meja') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
-                    Excel</a>
             <div class="card-tools">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formMejaModal" s">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <a href="{{ route('meja.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
+                <a href="{{ route('export-meja') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
+                        Excel</a>
                 <button type="button" class='btn btn-warning' data-bs-toggle="modal"
                     data-bs-target="#formImportMejaModal"><i class="fa-file-excel-o">
                         Import Excel</button>
             </div>
             <div class="card-tools">
-                <div class="card-tools">
-                    <div class="card-tools">
 
-                    </div>
-                </div>
                 <div class="card-body">
 
                     <table class=" table table-bordered table-hover table-stripped table-sm">

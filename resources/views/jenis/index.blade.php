@@ -18,15 +18,15 @@
                 <i class="fas fa-plus"></i>
             </button>
             <a href="{{ route('jenis.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
-            <div class="card-tools">
-                <a href="{{ route('export-jenis') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
-                        Excel</a>
-            </div>
-            <div class="card-tools">
-                <button type="button" class='btn btn-warning' data-bs-toggle="modal"
-                    data-bs-target="#formImportJenisModal"><i class="fa-file-excel-o">
-                        Import Excel</button>
-            </div>
+
+            <a href="{{ route('export-jenis') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
+                    Excel</a>
+
+
+            <button type="button" class='btn btn-warning' data-bs-toggle="modal" data-bs-target="#formImportJenisModal"><i
+                    class="fa-file-excel-o">
+                    Import Excel</button>
+
         </div>
         <div class="card-body">
 

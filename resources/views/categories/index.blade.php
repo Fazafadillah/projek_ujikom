@@ -15,17 +15,15 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formCategoriesModal"
-                style="margin: 10px;">
-                <i class="fas fa-plus"></i>
-            </button>
-            <a href="{{ route('categories.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
-            <a href="{{ route('export-category') }}" class="btn btn-success">Export to PDF</a>
-            <button type="button" class='btn btn-warning' data-bs-toggle="modal"
-                data-bs-target="#formCategoryImportModal"><i class="fa-file-excel-o">
-                    Import Excel</button>
             <div class="card-tools">
-
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formCategoriesModal">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <a href="{{ route('categories.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
+                <a href="{{ route('export-category') }}" class="btn btn-success">Export to PDF</a>
+                <button type="button" class='btn btn-warning' data-bs-toggle="modal"
+                    data-bs-target="#formCategoryImportModal"><i class="fa-file-excel-o">
+                        Import Excel</button>
             </div>
         </div>
         <div class="card-body">

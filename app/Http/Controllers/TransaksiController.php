@@ -60,6 +60,9 @@ class TransaksiController extends Controller
 
             // Membuat detail transaksi
             foreach ($request->orderedList as $detail) {
+                $menu = Menu::find($detail['menu_id']);
+                $menu->stok = $menu->stok - $detail['qty'];
+                $menu->save();
                 DetailTransaksi::create([
                     'transaksi_id' => $notrans,
                     'menu_id' => $detail['menu_id'],
