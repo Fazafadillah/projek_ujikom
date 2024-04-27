@@ -14,6 +14,7 @@ use Illuminate\Database\QueryException;
 use PDOException;
 use Illuminate\Support\Facades\DB;
 use App\Exports\MenuExport;
+use App\Imports\MenuImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -39,7 +40,12 @@ class MenuController extends Controller
     public function exportData()
     {
         $date = date('Y-m-d');
-        return Excel::download(new MenuExport, $date . '_paket.xlsx');
+        return Excel::download(new MenuExport, $date . '_Menu.xlsx');
+    }
+    public function importData()
+    {
+        Excel::import(new MenuImport, request()->file('import'));
+        return redirect()->back()->with('success', 'Import data Produk Menu berhasil');
     }
     /**
      * Show the form for creating a new resource.

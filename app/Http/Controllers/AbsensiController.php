@@ -9,6 +9,10 @@ use Exception;
 use Illuminate\Database\QueryException;
 use PDOException;
 use Illuminate\Support\Facades\DB;
+use App\Exports\AbsenExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\AbsenImport;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AbsensiController extends Controller
 {
@@ -17,8 +21,33 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $data['absensi'] = Absensi::get();
+        $data['absensi'] = Absensi::all();
         return view('absensi.index')->with($data);
+    }
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new AbsenExport, $date . '_absensi.xlsx');
+    }
+    public function importData()
+    {
+        Excel::import(new AbsenImport, request()->file('import'));
+
+        return redirect(request()->segment(1) . '/absen')->with('Data berhasil ditambah!');
+    }
+    public function exportPDF()
+    {
+        $absensi = Absensi::all();
+        $pdf = PDF::loadView('pdf.absensi', compact('absensi'));
+        return $pdf->download('absensi.pdf');
+    }
+    public function updateStatus(Absensi $request, $id)
+    {
+        $absensi = Absensi::findOrFail($id);
+        $absensi->status = $request->status;
+        $absensi->save();
+
+        return response()->json(['message' => 'Status updated successfully'], 200);
     }
 
     /**

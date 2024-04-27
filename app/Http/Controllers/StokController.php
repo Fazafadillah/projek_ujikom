@@ -12,6 +12,7 @@ use PDOException;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\StokExport;
+use App\Imports\StokImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class StokController extends Controller
@@ -36,7 +37,13 @@ class StokController extends Controller
     public function exportData()
     {
         $date = date('Y-m-d');
-        return Excel::download(new StokExport, $date . '_paket.xlsx');
+        return Excel::download(new StokExport, $date . '_Stok.xlsx');
+    }
+    public function importData()
+    {
+
+        Excel::import(new StokImport, request()->file('import'));
+        return redirect()->back()->with('success', 'Import data Produk Stok berhasil');
     }
     /**
      * Show the form for creating a new resource.

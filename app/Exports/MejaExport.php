@@ -2,42 +2,40 @@
 
 namespace App\Exports;
 
-use App\Models\Pelanggan;
+use App\Models\Meja;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\BeforeExport;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Sheet;
 
-class PelangganExport implements FromCollection,  WithHeadings, WithEvents
+class MejaExport implements FromCollection, WithHeadings, WithEvents
 {
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        $Pelanggans = Pelanggan::select('nama', 'email', 'no_telp', 'alamat')->get();
-        return $Pelanggans;
+        $mejas = Meja::select('nomor_meja', 'status')->get(); // Memilih hanya kolom 'jenis'
+
+        return $mejas;
     }
     public function headings(): array
     {
         return [
-            'Nama',
-            'Email',
-            'No_Telp',
-            'Alamat'
+            'Nomor Meja',
+            'status'
         ];
     }
-
     public function registerEvents(): array
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 $event->sheet->getColumnDimension('A')->setAutoSize(true);
                 $event->sheet->getColumnDimension('B')->setAutoSize(true);
-                $event->sheet->getColumnDimension('C')->setAutoSize(true);
-                $event->sheet->getColumnDimension('D')->setAutoSize(true);
-            },
+            }
         ];
     }
 }

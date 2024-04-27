@@ -11,6 +11,8 @@ use PDOException;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\PaketExport;
+use App\Imports\JenisImport;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class JenisController extends Controller
@@ -32,7 +34,13 @@ class JenisController extends Controller
     public function exportData()
     {
         $date = date('Y-m-d');
-        return Excel::download(new PaketExport, $date . '_paket.xlsx');
+        return Excel::download(new PaketExport, $date . '_jenis.xlsx');
+    }
+    public function importData()
+    {
+
+        Excel::import(new JenisImport, request()->file('import'));
+        return redirect()->back()->with('success', 'Import data Produk Jenis berhasil');
     }
     /**
      * Show the form for creating a new resource.

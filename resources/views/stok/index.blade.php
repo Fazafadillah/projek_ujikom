@@ -1,11 +1,11 @@
-@extends('templates.layout')
+@extends('templates.layout1')
 @push('style')
 @endpush
 @section('content')
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h1 class="card-title" style="margin: 10px;">Stock</h1>
+            <h1 class="card-title" style="margin: 10px;">Stok</h1>
             <br>
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,8 +20,13 @@
                 <i class="fas fa-plus"></i>
             </button>
             <a href="{{ route('stok.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
-            <a href="{{ route('export-paket-stok') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
-                Excel</a>
+            <a href="{{ route('export-stok') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
+                    Excel</a>
+            <div class="card-tools">
+                <button type="button" class='btn btn-warning' data-bs-toggle="modal"
+                    data-bs-target="#formImportStokModal"><i class="fa-file-excel-o">
+                        Import Excel</button>
+            </div>
             <div class="card-tools">
 
             </div>
@@ -68,6 +73,7 @@
     </div>
     <!-- /.card -->
     @include('stok.form')
+    @include('stok.import')
 @endsection
 
 @push('script')

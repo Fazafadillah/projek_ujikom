@@ -50,49 +50,57 @@
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
+                </li>
                 <li class="nav-item">
                     {{-- active bg-gradient-primary --}}
-                    <a class="nav-link text-white " href="{{ url('pelanggan') }}">
+                    <a class="nav-link text-white " href="{{ url('jenis') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">people</i>
+                            <i class="material-icons opacity-10">fastfood</i>
                         </div>
-                        <span class="nav-link-text ms-1">Pelanggan</span>
+                        <span class="nav-link-text ms-1">Jenis</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     {{-- active bg-gradient-primary --}}
-                    <a class="nav-link text-white " href="{{ url('transaksi') }}">
+                    <a class="nav-link text-white " href="{{ url('menu') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">receipt_long</i>
+                            <i class="material-icons opacity-10">menu_book</i>
                         </div>
-                        <span class="nav-link-text ms-1">Pemesanan</span>
+                        <span class="nav-link-text ms-1">Menu</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="{{ url('stok') }}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">inventory_2</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Stok</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="{{ url('about') }}">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">help</i>
-                        </div>
-                        <span class="nav-link-text ms-1">About</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="{{ url('absensi') }}">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">inbox</i>
-                        </div>
-                        <span class="nav-link-text ms-1">ABSENSI (TO2)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="{{ url('ContactUs') }}">
+                    <a class="nav-link text-white " href="{{ url('meja') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">notifications</i>
                         </div>
-                        <span class="nav-link-text ms-1">Contact</span>
+                        <span class="nav-link-text ms-1">Meja</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="{{ url('categories') }}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">notifications</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories</span>
+                    </a>
+                </li>
+
+                
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages
+                    </h6>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link text-white " href="{{ route('logout') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -101,14 +109,6 @@
                         <span class="nav-link-text ms-1">Logout</span>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/sign-up.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">assignment</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Sign Up</span>
-                    </a>
-                </li> --}}
             </ul>
         </div>
 
@@ -120,7 +120,8 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark"
+                                href="javascript:;">Pages</a>
                         </li>
                         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
                     </ol>

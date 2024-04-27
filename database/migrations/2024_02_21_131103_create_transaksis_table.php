@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->date('tanggal');
-            $table->float('total_harga');
+            $table->double('total_harga');
             $table->string('metode_pembayaran');
             $table->text('keterangan');
             $table->timestamps();

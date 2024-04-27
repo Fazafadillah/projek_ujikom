@@ -22,6 +22,9 @@
             <a href="{{ route('pelanggan.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
             <a href="{{ route('export-paket-pelanggan') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
                     Excel</a>
+            <button type="button" class='btn btn-warning' data-bs-toggle="modal"
+                data-bs-target="#formImportPelangganModal"><i class="fa-file-excel-o">
+                    Import Excel</button>
 
             <div class="card-tools">
 
@@ -73,6 +76,7 @@
         <!-- /.card-footer-->
     </div>
     <!-- /.card -->
+    @include('pelanggan.import')
     @include('pelanggan.form')
 @endsection
 

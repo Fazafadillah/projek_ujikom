@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CategoryExport;
 use App\Models\categories;
 use App\Http\Requests\StorecategoriesRequest;
 use App\Http\Requests\UpdatecategoriesRequest;
+use App\Imports\CategoryImport;
 use Exception;
 use Illuminate\Database\QueryException;
 use PDOException;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoriesController extends Controller
 {
@@ -27,6 +29,16 @@ class CategoriesController extends Controller
         $categories = Categories::all();
         $pdf = PDF::loadView('pdf.categories', compact('categories'));
         return $pdf->download('categories.pdf');
+    }
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new CategoryExport, $date . '_Kategori.xlsx');
+    }
+    public function importData()
+    {
+        Excel::import(new CategoryImport, request()->file('import'));
+        return redirect()->back()->with('success', 'Import data Produk Category berhasil');
     }
     /**
      * Show the form for creating a new resource.

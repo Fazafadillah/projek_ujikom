@@ -1,10 +1,10 @@
- <?php
+<?php
 
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTransaksiRequest extends FormRequest
+class AuthRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,10 +19,18 @@ class StoreTransaksiRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'email' => 'required',
+            'password' => 'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'email.required' => 'EMAIL HARUS DI ISI!',
+            'password.required' => 'PASSWORD HARUS DI ISI!'
         ];
     }
 }

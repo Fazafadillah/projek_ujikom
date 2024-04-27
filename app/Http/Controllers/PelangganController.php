@@ -11,6 +11,7 @@ use PDOException;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\PelangganExport;
+use App\Imports\PelangganImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PelangganController extends Controller
@@ -34,7 +35,12 @@ class PelangganController extends Controller
     public function exportData()
     {
         $date = date('Y-m-d');
-        return Excel::download(new PelangganExport, $date . '_paket.xlsx');
+        return Excel::download(new PelangganExport, $date . '_pelanggan.xlsx');
+    }
+    public function importData()
+    {
+        Excel::import(new PelangganImport, request()->file('import'));
+        return redirect()->back()->with('success', 'Import data Produk Pelanggan berhasil');
     }
     /**
      * Show the form for creating a new resource.

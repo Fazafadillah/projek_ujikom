@@ -1,4 +1,4 @@
-@extends('templates.layout')
+@extends('templates.layout1')
 @push('style')
 @endpush
 @section('content')
@@ -19,8 +19,13 @@
             </button>
             <a href="{{ route('jenis.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
             <div class="card-tools">
-                <a href="{{ route('export-paket-jenis') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
+                <a href="{{ route('export-jenis') }}" class='btn btn-success'><i class="fa-file-excel-o">Export
                         Excel</a>
+            </div>
+            <div class="card-tools">
+                <button type="button" class='btn btn-warning' data-bs-toggle="modal"
+                    data-bs-target="#formImportJenisModal"><i class="fa-file-excel-o">
+                        Import Excel</button>
             </div>
         </div>
         <div class="card-body">
@@ -63,6 +68,7 @@
     </div>
     <!-- /.card -->
 
+    @include('jenis.import')
     @include('jenis.form')
 @endsection
 

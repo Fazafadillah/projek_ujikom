@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('transaksi_id');
             $table->unsignedBigInteger('menu_id');
             $table->integer('jumlah');
-            $table->decimal('subtotal', 10, 2);
+            $table->double('subtotal');
             $table->timestamps();
 
             $table->foreign('transaksi_id')->references('id')->on('transaksi');

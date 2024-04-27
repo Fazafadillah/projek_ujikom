@@ -1,4 +1,4 @@
-@extends('templates.layout')
+@extends('templates.layout1')
 @push('style')
 @endpush
 @section('content')
@@ -20,7 +20,10 @@
                 <i class="fas fa-plus"></i>
             </button>
             <a href="{{ route('categories.export_pdf') }}" class="btn btn-danger">Export to PDF</a>
-
+            <a href="{{ route('export-category') }}" class="btn btn-success">Export to PDF</a>
+            <button type="button" class='btn btn-warning' data-bs-toggle="modal"
+                data-bs-target="#formCategoryImportModal"><i class="fa-file-excel-o">
+                    Import Excel</button>
             <div class="card-tools">
 
             </div>
@@ -65,6 +68,7 @@
     </div>
     <!-- /.card -->
     @include('categories.form')
+    @include('categories.import')
 @endsection
 
 @push('script')
